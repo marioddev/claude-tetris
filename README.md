@@ -42,6 +42,7 @@ Es una versión jugable del Tetris clásico con todas las mecánicas que esperar
 - **Sistema de puntuación** clásico de Tetris (100 / 300 / 500 / 800 multiplicado por nivel).
 - **Niveles** que aumentan cada 10 líneas y aceleran la caída.
 - **Pausa** y **Game Over** con opción de reinicio.
+- **Selector de tema**: oscuro (por defecto), claro y rosa, con la preferencia guardada en `localStorage`.
 
 ---
 
@@ -88,6 +89,12 @@ Después abre `http://localhost:8000` en el navegador.
 
 ---
 
+## Tema
+
+El panel lateral incluye un selector `TEMA` con tres opciones: **Oscuro** (por defecto), **Claro** y **Rosa**. El tema elegido se guarda en `localStorage` y se restaura al recargar la página; reiniciar la partida no lo modifica. Los colores de las piezas (`COLORS` en `game.js`) son siempre los mismos, independientemente del tema.
+
+---
+
 ## Cómo funciona
 
 El juego se compone de tres archivos que cooperan:
@@ -97,12 +104,12 @@ El juego se compone de tres archivos que cooperan:
 Define la estructura visual:
 
 - Un `<canvas id="board">` de **300 × 600** píxeles donde se renderiza el tablero.
-- Un panel lateral con `SCORE`, `LINES`, `LEVEL`, vista de la siguiente pieza y la lista de controles.
+- Un panel lateral con `SCORE`, `LINES`, `LEVEL`, vista de la siguiente pieza, selector de `TEMA` y la lista de controles.
 - Un overlay para los estados **PAUSA** y **GAME OVER**.
 
 ### 2. `style.css`
 
-Aporta el aspecto visual con estética _dark / retro arcade_: fondo oscuro, tipografía monoespaciada para los marcadores y _backdrop blur_ en los overlays.
+Aporta el aspecto visual con estética _retro arcade_: tipografía monoespaciada para los marcadores y _backdrop blur_ en los overlays. Los colores se definen como variables CSS en `:root` (tema oscuro por defecto) y se sobrescriben en `body[data-theme="light"]` / `body[data-theme="pink"]` para los otros temas.
 
 ### 3. `game.js`
 

@@ -4,9 +4,75 @@
   padding: 0;
 }
 
+:root {
+  --bg: #0f0f17;
+  --text: #e0e0e0;
+  --title-color: #7aa2f7;
+  --title-shadow: rgba(122, 162, 247, 0.5);
+  --board-border: #2a2a3a;
+  --board-bg: #1a1a25;
+  --label-color: #555570;
+  --value-color: #7aa2f7;
+  --controls-text: #888;
+  --kbd-bg: #22223a;
+  --kbd-border: #3a3a5a;
+  --kbd-text: #aaa;
+  --overlay-bg: rgba(10, 10, 20, 0.75);
+  --overlay-title-color: #e57373;
+  --overlay-score-color: #7aa2f7;
+  --restart-bg: #7aa2f7;
+  --restart-text: #0f0f17;
+  --restart-hover: #9bbdff;
+  --grid-line: #22222e;
+}
+
+body[data-theme="light"] {
+  --bg: #f0f0f5;
+  --text: #1a1a25;
+  --title-color: #3f5fbf;
+  --title-shadow: rgba(63, 95, 191, 0.3);
+  --board-border: #c8c8d8;
+  --board-bg: #ffffff;
+  --label-color: #7878a0;
+  --value-color: #3f5fbf;
+  --controls-text: #555566;
+  --kbd-bg: #e4e4ee;
+  --kbd-border: #c0c0d0;
+  --kbd-text: #444455;
+  --overlay-bg: rgba(240, 240, 245, 0.85);
+  --overlay-title-color: #c0392b;
+  --overlay-score-color: #3f5fbf;
+  --restart-bg: #3f5fbf;
+  --restart-text: #ffffff;
+  --restart-hover: #5a7ad9;
+  --grid-line: #d8d8e4;
+}
+
+body[data-theme="pink"] {
+  --bg: #2a0f1f;
+  --text: #ffe0ec;
+  --title-color: #ff6fa5;
+  --title-shadow: rgba(255, 111, 165, 0.5);
+  --board-border: #5a2a45;
+  --board-bg: #3a1a2c;
+  --label-color: #b0708f;
+  --value-color: #ff9fc4;
+  --controls-text: #d090a8;
+  --kbd-bg: #4a2238;
+  --kbd-border: #6a3a55;
+  --kbd-text: #ffc0d8;
+  --overlay-bg: rgba(42, 15, 31, 0.8);
+  --overlay-title-color: #ff5c8a;
+  --overlay-score-color: #ff9fc4;
+  --restart-bg: #ff6fa5;
+  --restart-text: #2a0f1f;
+  --restart-hover: #ff8fbd;
+  --grid-line: #4a2238;
+}
+
 body {
-  background: #0f0f17;
-  color: #e0e0e0;
+  background: var(--bg);
+  color: var(--text);
   font-family: system-ui, -apple-system, sans-serif;
   display: flex;
   align-items: center;
@@ -24,8 +90,8 @@ body {
   font-weight: 800;
   letter-spacing: 8px;
   text-align: center;
-  color: #7aa2f7;
-  text-shadow: 0 0 20px rgba(122, 162, 247, 0.5);
+  color: var(--title-color);
+  text-shadow: 0 0 20px var(--title-shadow);
   margin-bottom: 16px;
 }
 
@@ -37,8 +103,8 @@ body {
 
 #board {
   display: block;
-  border: 1px solid #2a2a3a;
-  background: #1a1a25;
+  border: 1px solid var(--board-border);
+  background: var(--board-bg);
   border-radius: 4px;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
 }
@@ -61,7 +127,7 @@ body {
 .label {
   font-size: 10px;
   letter-spacing: 2px;
-  color: #555570;
+  color: var(--label-color);
   font-weight: 600;
 }
 
@@ -69,15 +135,27 @@ body {
   font-family: 'Courier New', Courier, monospace;
   font-size: 26px;
   font-weight: 700;
-  color: #7aa2f7;
+  color: var(--value-color);
   letter-spacing: 1px;
 }
 
 #next-canvas {
   display: block;
-  border: 1px solid #2a2a3a;
-  background: #1a1a25;
+  border: 1px solid var(--board-border);
+  background: var(--board-bg);
   border-radius: 4px;
+}
+
+/* ---- Tema ---- */
+#theme-select {
+  background: var(--kbd-bg);
+  color: var(--text);
+  border: 1px solid var(--kbd-border);
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
 }
 
 /* ---- Controles ---- */
@@ -90,20 +168,20 @@ body {
 
 .controls li {
   font-size: 12px;
-  color: #888;
+  color: var(--controls-text);
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
 kbd {
-  background: #22223a;
-  border: 1px solid #3a3a5a;
+  background: var(--kbd-bg);
+  border: 1px solid var(--kbd-border);
   border-radius: 3px;
   padding: 1px 6px;
   font-size: 11px;
   font-family: inherit;
-  color: #aaa;
+  color: var(--kbd-text);
 }
 
 /* ---- Overlay ---- */
@@ -113,7 +191,7 @@ kbd {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(10, 10, 20, 0.75);
+  background: var(--overlay-bg);
   backdrop-filter: blur(4px);
   border-radius: 4px;
 }
@@ -134,19 +212,19 @@ kbd {
   font-size: 28px;
   font-weight: 800;
   letter-spacing: 4px;
-  color: #e57373;
+  color: var(--overlay-title-color);
 }
 
 #overlay-score {
   font-family: 'Courier New', Courier, monospace;
   font-size: 14px;
-  color: #7aa2f7;
+  color: var(--overlay-score-color);
 }
 
 #restart-btn {
   margin-top: 8px;
-  background: #7aa2f7;
-  color: #0f0f17;
+  background: var(--restart-bg);
+  color: var(--restart-text);
   border: none;
   border-radius: 6px;
   padding: 10px 28px;
@@ -158,5 +236,5 @@ kbd {
 }
 
 #restart-btn:hover {
-  background: #9bbdff;
+  background: var(--restart-hover);
 }

@@ -80,6 +80,41 @@ body {
   border-radius: 4px;
 }
 
+.skin-select {
+  background: #22223a;
+  border: 1px solid #3a3a5a;
+  border-radius: 4px;
+  color: #e0e0e0;
+  font-family: inherit;
+  font-size: 12px;
+  padding: 6px 8px;
+  cursor: pointer;
+}
+
+.skin-select:focus {
+  outline: 1px solid #7aa2f7;
+}
+
+/* ---- Skins ---- */
+body[data-skin="neon"] #board,
+body[data-skin="neon"] #next-canvas {
+  background: #000000;
+  border-color: #00e5ff;
+  box-shadow: 0 0 24px rgba(0, 229, 255, 0.35), 0 0 40px rgba(0, 0, 0, 0.6);
+}
+
+body[data-skin="pastel"] #board,
+body[data-skin="pastel"] #next-canvas {
+  background: #232333;
+  border-color: #cdb8e8;
+}
+
+body[data-skin="pixel"] #board,
+body[data-skin="pixel"] #next-canvas {
+  background: #14141c;
+  border-color: #3a3a3a;
+}
+
 /* ---- Controles ---- */
 .controls ul {
   list-style: none;

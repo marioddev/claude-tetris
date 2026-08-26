@@ -42,6 +42,7 @@ Es una versión jugable del Tetris clásico con todas las mecánicas que esperar
 - **Sistema de puntuación** clásico de Tetris (100 / 300 / 500 / 800 multiplicado por nivel).
 - **Niveles** que aumentan cada 10 líneas y aceleran la caída.
 - **Pausa** y **Game Over** con opción de reinicio.
+- **Tabla de récords local** (`localStorage`): top 5 puntuaciones con nombre, resaltando la entrada nueva, más el mejor combo y las líneas máximas conseguidas históricamente. Incluye botón para resetear.
 
 ---
 
@@ -97,8 +98,8 @@ El juego se compone de tres archivos que cooperan:
 Define la estructura visual:
 
 - Un `<canvas id="board">` de **300 × 600** píxeles donde se renderiza el tablero.
-- Un panel lateral con `SCORE`, `LINES`, `LEVEL`, vista de la siguiente pieza y la lista de controles.
-- Un overlay para los estados **PAUSA** y **GAME OVER**.
+- Un panel lateral con `SCORE`, `LINES`, `LEVEL`, vista de la siguiente pieza, la lista de controles y la sección de **récords** (top 5, mejor combo, máx. líneas, botón de reseteo).
+- Un overlay para los estados **PAUSA** y **GAME OVER**, con campo de nombre cuando la puntuación entra en el top 5.
 
 ### 2. `style.css`
 
@@ -137,6 +138,13 @@ init()
 ```
 
 Cuando una pieza recién generada ya colisiona al aparecer (`spawn`), se dispara `endGame()` y se muestra el overlay de **Game Over**.
+
+### Récords y estadísticas
+
+- Cada limpieza de líneas consecutiva (sin fallar un lock intermedio) incrementa un contador de **combo**; `clearLines()` lo reinicia a `0` en cuanto un lock no limpia ninguna línea.
+- Al terminar la partida (`endGame`), se compara el `score` final contra el top 5 guardado en `localStorage` (clave `tetris-records`). Si entra en el top 5, se muestra un campo de texto para introducir el nombre (`saveScore`); si no, se muestra directamente la tabla actualizada.
+- El mejor combo y las líneas máximas de cualquier partida se guardan aparte, en la clave `tetris-stats`, y se actualizan siempre (entren o no en el top 5 de puntuación).
+- El botón **Resetear récords** borra ambas claves de `localStorage` tras confirmación.
 
 ---
 
